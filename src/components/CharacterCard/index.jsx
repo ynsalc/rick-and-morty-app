@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CharacterCard = ({ character }) => {
   return (
@@ -6,7 +7,7 @@ const CharacterCard = ({ character }) => {
       <div className="max-w-sm rounded overflow-hidden shadow-lg">
         <img className="w-full" src={character.image} alt={character.name} />
         <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{character.name}</div>
+          <Link to={`/characters/${character.id}`} className="font-bold text-xl mb-2">{character.name}</Link>
           <p className="text-gray-700 text-base">Gender: {character.gender}</p>
         </div>
         <div className="px-6 pt-4 pb-2">

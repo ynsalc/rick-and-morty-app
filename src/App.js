@@ -6,6 +6,7 @@ import Home from "pages/Home";
 import Character from "pages/Character";
 import Episode from "pages/Episode";
 import Location from "pages/Location";
+import CharacterDetail from "pages/CharacterDetail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/characters" element={<Character />} />
         <Route path="/episodes" element={<Episode />} />
         <Route path="/locations" element={<Location />} />
+        <Route path="/characters/:id" element={<CharacterDetail />} />
       </Routes>
       <Footer />
     </>

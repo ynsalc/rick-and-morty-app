@@ -65,25 +65,25 @@ const Sidebar = ({ updateStatus, updateGender, updateSpecies, updatePage }) => {
   };
   return (
     <div className="lg:w-auto md:w-auto sm:w-auto mt-4 rounded-lg">
-      <h3 class="mb-4 font-semibold text-gray-900">Status</h3>
-      <ul class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
+      <h3 className="mb-4 font-semibold text-gray-900">Status</h3>
+      <ul className="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
         {status.map((item) => (
           <li
             key={item.id}
-            class="w-full rounded-t-lg border-b border-gray-200"
+            className="w-full rounded-t-lg border-b border-gray-200"
           >
-            <div class="flex items-center pl-3">
+            <div className="flex items-center pl-3">
               <input
                 id={`${item.id}-status`}
                 type="checkbox"
                 checked={item.checked}
                 onChange={() => changeStatus(item.id)}
                 value=""
-                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
               />
               <label
-                for={`${item.id}-status`}
-                class="py-3 ml-2 w-full text-sm font-medium text-gray-900"
+                htmlFor={`${item.id}-status`}
+                className="py-3 ml-2 w-full text-sm font-medium text-gray-900"
               >
                 {item.name}
               </label>
@@ -91,25 +91,25 @@ const Sidebar = ({ updateStatus, updateGender, updateSpecies, updatePage }) => {
           </li>
         ))}
       </ul>
-      <h3 class="mb-4 font-semibold text-gray-900 mt-4">Species</h3>
-      <ul class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
+      <h3 className="mb-4 font-semibold text-gray-900 mt-4">Species</h3>
+      <ul className="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
         {species.map((item) => (
           <li
             key={item.id}
-            class="w-full rounded-t-lg border-b border-gray-200"
+            className="w-full rounded-t-lg border-b border-gray-200"
           >
-            <div class="flex items-center pl-3">
+            <div className="flex items-center pl-3">
               <input
                 id={`${item.id}-species`}
                 type="checkbox"
                 checked={item.checked}
                 onChange={() => changeSpecies(item.id)}
                 value=""
-                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
               />
               <label
-                for={`${item.id}-species`}
-                class="py-3 ml-2 w-full text-sm font-medium text-gray-900"
+                htmlFor={`${item.id}-species`}
+                className="py-3 ml-2 w-full text-sm font-medium text-gray-900"
               >
                 {item.name}
               </label>
@@ -117,25 +117,25 @@ const Sidebar = ({ updateStatus, updateGender, updateSpecies, updatePage }) => {
           </li>
         ))}
       </ul>
-      <h3 class="mb-4 font-semibold text-gray-900 mt-4">Gender</h3>
-      <ul class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
+      <h3 className="mb-4 font-semibold text-gray-900 mt-4">Gender</h3>
+      <ul className="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
         {gender.map((item) => (
           <li
             key={item.id}
-            class="w-full rounded-t-lg border-b border-gray-200"
+            className="w-full rounded-t-lg border-b border-gray-200"
           >
-            <div class="flex items-center pl-3">
+            <div className="flex items-center pl-3">
               <input
                 id={`${item.id}-gender`}
                 type="checkbox"
                 checked={item.checked}
                 onChange={() => changeGender(item.id)}
                 value=""
-                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
               />
               <label
-                for={`${item.id}-gender`}
-                class="py-3 ml-2 w-full text-sm font-medium text-gray-900"
+                htmlFor={`${item.id}-gender`}
+                className="py-3 ml-2 w-full text-sm font-medium text-gray-900"
               >
                 {item.name}
               </label>
