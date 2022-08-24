@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "components/Pagination";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const CharacterDetail = () => {
@@ -12,22 +11,22 @@ const CharacterDetail = () => {
   const [pageNumber, updatePageNumber] = useState(1);
 
   useEffect(() => {
-    axios
-      .get(`https://rickandmortyapi.com/api/character/${id}`)
-      .then((res) => setSingleCharacter(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+    (async function () {
+      const data = await fetch(
+        `https://rickandmortyapi.com/api/character/${id}`
+      ).then((res) => res.json());
+      setSingleCharacter(data);
+    })();
+  }, [id]);
 
   useEffect(() => {
-    axios
-      .get(
+    (async function () {
+      const data = await fetch(
         `https://rickandmortyapi.com/api/episode?character=${id}&page=${pageNumber}`
-      )
-      .then((res) => {
-        setEpisodes(res.data.results);
-        setEpisodeInfo(res.data.info);
-      })
-      .catch((err) => console.log(err));
+      ).then((res) => res.json());
+      setEpisodes(data.results);
+      setEpisodeInfo(data.info);
+    })();
   }, [id, pageNumber]);
 
   const { name, image, gender, location, species, status, origin, type } =
@@ -60,7 +59,12 @@ const CharacterDetail = () => {
           <div className="relative">
             {" "}
             <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-              <img src={image} className="rounded-full" viewBox="0 0 20 20" />
+              <img
+                src={image}
+                className="rounded-full"
+                viewBox="0 0 20 20"
+                alt={name}
+              />
             </div>{" "}
           </div>{" "}
           <div className="space-x-8 mt-32 md:mt-0">
