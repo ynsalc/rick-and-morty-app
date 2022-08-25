@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "components/Card";
 import Pagination from "components/Pagination";
+import { episodeUrl } from "constants/serviceUrl";
 
 const Episode = () => {
   const [episodes, setEpisodes] = useState([]);
@@ -9,9 +10,9 @@ const Episode = () => {
 
   useEffect(() => {
     (async function () {
-      const data = await fetch(
-        `https://rickandmortyapi.com/api/episode?page=${pageNumber}`
-      ).then((res) => res.json());
+      const data = await fetch(`${episodeUrl}?page=${pageNumber}`).then((res) =>
+        res.json()
+      );
       setEpisodes(data.results);
       setEpisodesInfo(data.info);
     })();

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { locationUrl } from "constants/serviceUrl";
 
 const LocationDetail = () => {
   const { id } = useParams();
   const [location, setLocation] = useState({});
   const [locationCharacters, setLocationCharacters] = useState([]);
-  let api = `https://rickandmortyapi.com/api/location/${id}`;
+  let api = `${locationUrl}/${id}`;
   useEffect(() => {
     (async function () {
       let data = await fetch(api).then((res) => res.json());
@@ -47,7 +48,7 @@ const LocationDetail = () => {
           Characters
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 my-12">
-          {locationCharacters.map((char) => {
+          {locationCharacters.length > 0 ? locationCharacters.map((char) => {
             return (
               <Link to={`/characters/${char.id}`} key={char.id}>
                 <div className="mb-4 flex flex-col items-center justify-center">
@@ -62,7 +63,9 @@ const LocationDetail = () => {
                 </div>
               </Link>
             );
-          })}
+          }) : (
+            <h3 className="text-gray-700 text-xl">No Results Found.</h3>
+          )}
         </div>
       </div>
     </div>

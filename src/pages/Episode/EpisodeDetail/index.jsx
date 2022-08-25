@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Dropdown from "components/Dropdown";
 import { genderArr, speciesArr, statusArr } from "constants/staticArr";
 import { readStorageItem, writeStorageItem } from "utils/storage";
+import { episodeUrl } from "constants/serviceUrl";
 
 const EpisodeDetail = () => {
   const { id } = useParams();
@@ -13,7 +14,8 @@ const EpisodeDetail = () => {
   const [gender, setUpdateGender] = useState(genderArr);
   const [species, setUpdateSpecies] = useState(speciesArr);
   const [sorted, setSorted] = useState(null);
-  let api = `https://rickandmortyapi.com/api/episode/${id}`;
+  const [notResult, setNotResult] = useState(false);
+  let api = `${episodeUrl}/${id}`;
   useEffect(() => {
     (async function () {
       let data = await fetch(api).then((res) => res.json());
@@ -133,6 +135,8 @@ const EpisodeDetail = () => {
         genderChecked.includes(gnd.gender)
       );
     }
+
+    updateCharacters.length > 0 ? setNotResult(false) : setNotResult(true);
 
     setEpisodeCharacters([...updateCharacters]);
   }, [status, species, gender, sorted, storageData]);
@@ -256,7 +260,7 @@ const EpisodeDetail = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 my-12">
-            {episodeCharacters.map((char) => {
+            {!notResult ? episodeCharacters.map((char) => {
               return (
                 <Link to={`/characters/${char.id}`} key={char.id}>
                   <div className="mb-4 flex flex-col items-center justify-center">
@@ -271,7 +275,9 @@ const EpisodeDetail = () => {
                   </div>
                 </Link>
               );
-            })}
+            }) : (
+              <h3 className="text-gray-700 text-xl">No Results Found.</h3>
+            )}
           </div>
         </div>
       </div>

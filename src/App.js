@@ -12,7 +12,7 @@ import LocationDetail from "pages/Location/LocationDetail";
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -24,7 +24,7 @@ function App() {
         <Route path="/locations/:id" element={<LocationDetail />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

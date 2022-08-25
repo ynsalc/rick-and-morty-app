@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "components/Pagination";
 import LocationCard from "components/LocationCard";
+import { locationUrl } from "constants/serviceUrl";
 
 const Location = () => {
   const [locations, setLocations] = useState([]);
@@ -9,9 +10,9 @@ const Location = () => {
 
   useEffect(() => {
     (async function () {
-      const data = await fetch(
-        `https://rickandmortyapi.com/api/location?page=${pageNumber}`
-      ).then((res) => res.json());
+      const data = await fetch(`${locationUrl}?page=${pageNumber}`).then(
+        (res) => res.json()
+      );
       setLocations(data.results);
       setLocationInfo(data.info);
     })();

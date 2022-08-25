@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "components/Pagination";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { charakterUrl, episodeUrl } from "constants/serviceUrl";
 
 const CharacterDetail = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const CharacterDetail = () => {
   useEffect(() => {
     (async function () {
       const data = await fetch(
-        `https://rickandmortyapi.com/api/character/${id}`
+        `${charakterUrl}/${id}`
       ).then((res) => res.json());
       setSingleCharacter(data);
     })();
@@ -22,7 +23,7 @@ const CharacterDetail = () => {
   useEffect(() => {
     (async function () {
       const data = await fetch(
-        `https://rickandmortyapi.com/api/episode?character=${id}&page=${pageNumber}`
+        `${episodeUrl}?character=${id}&page=${pageNumber}`
       ).then((res) => res.json());
       setEpisodes(data.results);
       setEpisodeInfo(data.info);
@@ -92,9 +93,9 @@ const CharacterDetail = () => {
         <h3 className="text-gray-700 text-xl font-bold mt-4">Episodes</h3>
         <div className="mt-12 flex flex-col justify-center">
           {episodes.map((item) => (
-            <p key={item.id} className="text-md">
+            <Link to={`/episodes/${item.id}`} key={item.id} className="text-md text-gray-700">
               {item.name}
-            </p>
+            </Link>
           ))}
         </div>
         <Pagination
