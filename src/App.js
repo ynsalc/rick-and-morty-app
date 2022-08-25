@@ -12,7 +12,7 @@ import LocationDetail from "pages/Location/LocationDetail";
 
 function App() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen justify-between">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

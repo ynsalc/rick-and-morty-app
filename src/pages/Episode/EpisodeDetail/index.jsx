@@ -149,7 +149,7 @@ const EpisodeDetail = () => {
     <div className="my-20 flex justify-between container mx-auto">
       {/* Sidebar Filter */}
       <div className="lg:w-auto md:w-auto sm:w-auto mr-5">
-        <div className="lg:w-auto md:w-auto sm:w-auto mt-4 rounded-lg">
+        <div className="lg:w-auto md:w-auto sm:w-auto rounded-lg">
           <h3 className="mb-4 font-semibold text-gray-900">Status</h3>
           <ul className="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
             {status.map((item) => (
@@ -252,7 +252,7 @@ const EpisodeDetail = () => {
             </div>
           </div>
         </div>
-        <div className="border p-10">
+        <div className="border p-12">
           <div className="my-4 pb-2 border-b border-gray-300 flex justify-between">
             <div className="text-xl 2xl:text-2xl font-bold">Characters</div>
             <div>
@@ -270,7 +270,7 @@ const EpisodeDetail = () => {
                       alt={char.name}
                     />
                     <p className="w-24 md:w-auto text-center mt-2 text-sm 2xl:text-base text-secondary hover:text-secondary-light font-bold truncate">
-                      {char.name}
+                      {char.name.slice(0, 20)}
                     </p>
                   </div>
                 </Link>
