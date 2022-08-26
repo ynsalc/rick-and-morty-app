@@ -14,7 +14,6 @@ const EpisodeDetail = () => {
   const [gender, setUpdateGender] = useState(genderArr);
   const [species, setUpdateSpecies] = useState(speciesArr);
   const [sorted, setSorted] = useState(null);
-  const [notResult, setNotResult] = useState(false);
   let api = `${episodeUrl}/${id}`;
   useEffect(() => {
     (async function () {
@@ -39,7 +38,9 @@ const EpisodeDetail = () => {
           return 0;
         })
       );
-      writeStorageItem("episodeCharacter", characters);
+      if (characters.length > 0) {
+        writeStorageItem("episodeCharacter", characters);
+      }
     })();
   }, [api]);
 
@@ -136,9 +137,7 @@ const EpisodeDetail = () => {
       );
     }
 
-    updateCharacters?.length > 0 ? setNotResult(false) : setNotResult(true);
-
-    setEpisodeCharacters(updateCharacters);
+    setEpisodeCharacters([...updateCharacters]);
   }, [status, species, gender, sorted, storageData]);
 
   useEffect(() => {
@@ -260,22 +259,24 @@ const EpisodeDetail = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 my-12">
-            {!notResult ? episodeCharacters.map((char) => {
-              return (
-                <Link to={`/characters/${char.id}`} key={char.id}>
-                  <div className="mb-4 flex flex-col items-center justify-center">
-                    <img
-                      className="w-16 h-16 rounded-full"
-                      src={char.image}
-                      alt={char.name}
-                    />
-                    <p className="w-24 md:w-auto text-center mt-2 text-sm 2xl:text-base text-secondary hover:text-secondary-light font-bold truncate">
-                      {char.name.slice(0, 20)}
-                    </p>
-                  </div>
-                </Link>
-              );
-            }) : (
+            {episodeCharacters?.length > 0 ? (
+              episodeCharacters.map((char) => {
+                return (
+                  <Link to={`/characters/${char.id}`} key={char.id}>
+                    <div className="mb-4 flex flex-col items-center justify-center">
+                      <img
+                        className="w-16 h-16 rounded-full"
+                        src={char.image}
+                        alt={char.name}
+                      />
+                      <p className="w-24 md:w-auto text-center mt-2 text-sm 2xl:text-base text-secondary hover:text-secondary-light font-bold truncate">
+                        {char.name.slice(0, 20)}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })
+            ) : (
               <h3 className="text-gray-700 text-xl">No Results Found.</h3>
             )}
           </div>
