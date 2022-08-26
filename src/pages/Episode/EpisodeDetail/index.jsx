@@ -138,7 +138,7 @@ const EpisodeDetail = () => {
 
     updateCharacters?.length > 0 ? setNotResult(false) : setNotResult(true);
 
-    setEpisodeCharacters([...updateCharacters]);
+    setEpisodeCharacters(updateCharacters);
   }, [status, species, gender, sorted, storageData]);
 
   useEffect(() => {
